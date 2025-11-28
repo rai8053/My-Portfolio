@@ -10,7 +10,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  category: 'Frontend' | 'Backend' | 'Tools' | 'AI/ML';
+  category: 'Frontend' | 'Backend' | 'Tools' | 'AI/ML' | 'Web3';
   level: number; // 0-100
 }
 
@@ -24,5 +24,6 @@ export enum SectionId {
   HERO = 'hero',
   PROJECTS = 'projects',
   SKILLS = 'skills',
+  RESUME = 'resume',
   CONTACT = 'contact'
 }

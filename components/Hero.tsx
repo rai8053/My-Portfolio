@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail, Code, Database } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Code, Database, FileText } from 'lucide-react';
 import { SectionId } from '../types';
 import { DEVELOPER_NAME, DEVELOPER_ROLE, DEVELOPER_BIO, SOCIAL_LINKS } from '../constants';
 
 const Hero: React.FC = () => {
-  const scrollToProjects = () => {
-    const element = document.getElementById(SectionId.PROJECTS);
+  const scrollToSection = (id: SectionId) => {
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-10">
               <motion.button
-                onClick={scrollToProjects}
+                onClick={() => scrollToSection(SectionId.PROJECTS)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-semibold shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-2"
@@ -64,7 +64,18 @@ const Hero: React.FC = () => {
                 View Projects
               </motion.button>
               
-              <div className="flex gap-4 items-center justify-center">
+              <motion.button
+                onClick={() => scrollToSection(SectionId.CONTACT)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-slate-800 text-white border border-slate-700 rounded-full font-semibold hover:bg-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2"
+              >
+                <Mail size={20} />
+                Contact Me
+              </motion.button>
+            </div>
+
+            <div className="flex gap-4 items-center justify-center md:justify-start">
                 {[
                   { icon: Github, href: SOCIAL_LINKS.github },
                   { icon: Linkedin, href: SOCIAL_LINKS.linkedin },
@@ -83,7 +94,6 @@ const Hero: React.FC = () => {
                     <social.icon size={22} />
                   </motion.a>
                 ))}
-              </div>
             </div>
           </motion.div>
 
@@ -139,7 +149,7 @@ const Hero: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gray-500 animate-bounce cursor-pointer"
-        onClick={scrollToProjects}
+        onClick={() => scrollToSection(SectionId.PROJECTS)}
       >
         <ArrowDown size={32} />
       </motion.div>
